@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap');
+
+:root {
+  --cream: #f7f3ee;
+  --cream-dark: #ede7df;
+  --parchment: #e8dfd4;
+  --ink: #1e1a17;
+  --ink-soft: #4a4239;
+  --ink-muted: #8a7f74;
+  --rose: #c4756a;
+  --rose-light: #f0d4cf;
+  --rose-dark: #9c4f44;
+  --gold: #b8935a;
+  --gold-light: #f0e4cc;
+  --border: rgba(30,26,23,0.12);
+  --border-strong: rgba(30,26,23,0.22);
+  --radius: 6px;
+  --radius-lg: 12px;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-mono);
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 13px;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+input, select, button { font-family: inherit; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--parchment); border-radius: 3px; }

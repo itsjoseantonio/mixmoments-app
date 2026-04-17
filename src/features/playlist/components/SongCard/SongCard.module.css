@@ -1,0 +1,268 @@
+.card {
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  position: relative;
+  transition: box-shadow 0.15s;
+}
+
+.card:hover {
+  box-shadow: 0 2px 16px rgba(30,26,23,0.06);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.dragHandle {
+  cursor: grab;
+  background: none;
+  border: none;
+  color: var(--ink-muted);
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.1s, background 0.1s;
+  flex-shrink: 0;
+}
+
+.dragHandle:hover {
+  color: var(--ink-soft);
+  background: var(--cream-dark);
+}
+
+.dragHandle:active { cursor: grabbing; }
+
+.index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  flex-shrink: 0;
+  min-width: 22px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+}
+
+.duration {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  flex-shrink: 0;
+  background: var(--cream-dark);
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-muted);
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.1s, background 0.1s;
+  flex-shrink: 0;
+}
+
+.removeBtn:hover {
+  color: var(--rose-dark);
+  background: var(--rose-light);
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  background: var(--cream);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--border);
+}
+
+.playBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-muted);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  transition: color 0.1s;
+}
+
+.playBtn:hover {
+  color: var(--ink);
+}
+
+.playBtnActive {
+  color: var(--rose);
+}
+
+.playBtnActive:hover {
+  color: var(--rose-dark);
+}
+
+.progressTrack {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--rose);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.playerTime {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--ink-muted);
+  flex-shrink: 0;
+  min-width: 72px;
+  text-align: right;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ctrlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ctrlLabel {
+  font-size: 10px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.timeInput {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeInput input {
+  width: 68px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  padding: 6px 8px;
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--cream);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.timeInput input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold-light);
+}
+
+.timeHint {
+  font-size: 10px;
+  color: var(--ink-muted);
+}
+
+.divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.select {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  padding: 6px 8px;
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--cream);
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+  min-width: 70px;
+}
+
+.select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold-light);
+}
+
+.connector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 2px;
+}
+
+.connectorLine {
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+
+.connectorLabel {
+  font-size: 10px;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.locked {
+  opacity: 0.45;
+  pointer-events: none;
+  position: relative;
+}
+
+.lockedBadge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  background: var(--rose-light);
+  color: var(--rose-dark);
+  padding: 2px 8px;
+  border-radius: 10px;
+  pointer-events: auto;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.lockedBadge:hover {
+  opacity: 0.75;
+}

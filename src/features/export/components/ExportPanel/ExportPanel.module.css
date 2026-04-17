@@ -1,0 +1,125 @@
+.panel {
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.count {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.total {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  background: var(--cream-dark);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.exportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.15s, opacity 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.exportBtn:hover:not(:disabled) {
+  background: var(--ink-soft);
+}
+
+.exportBtn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.exporting {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progressWrap {
+  height: 3px;
+  background: var(--cream-dark);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.statusDone {
+  font-size: 12px;
+  color: #4a7c59;
+  font-family: var(--font-mono);
+}
+
+.statusError {
+  font-size: 12px;
+  color: var(--rose-dark);
+  font-family: var(--font-mono);
+}
+
+.limitWarning {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  background: var(--rose-light);
+  color: var(--rose-dark);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.quotaRemaining {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  background: var(--cream-dark);
+  color: var(--ink-muted);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.quotaExhausted {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  background: var(--rose-light);
+  color: var(--rose-dark);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.exportBtnUpgrade {
+  background: var(--rose-dark);
+}
+
+.exportBtnUpgrade:hover:not(:disabled) {
+  background: var(--rose);
+}

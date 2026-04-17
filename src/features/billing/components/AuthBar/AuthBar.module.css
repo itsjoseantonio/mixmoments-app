@@ -1,0 +1,30 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.proBadge {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--gold-light);
+  color: var(--gold);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.signInBtn {
+  background: none;
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.signInBtn:hover { background: var(--cream-dark); }
