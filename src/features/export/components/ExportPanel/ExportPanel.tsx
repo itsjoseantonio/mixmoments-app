@@ -56,9 +56,9 @@ export function ExportPanel({ songs, status, progress, onExport, isPro, exportsU
         {isExporting ? (
           <span className={styles.exporting}><Spinner />{status.message || 'Processing…'}</span>
         ) : overSongLimit ? (
-          <><LockIcon />Unlock to export all {songs.length} songs — $19</>
+          <><LockIcon />Locked to export all {songs.length} songs</>
         ) : quotaExhausted ? (
-          <><LockIcon />Export limit reached — upgrade for $19</>
+          <><LockIcon />You've reached your export limit</>
         ) : (
           <><DownloadIcon />Export merged MP3</>
         )}

@@ -83,10 +83,13 @@ export default function App() {
             ) : (
               <span className={styles.planFree}>
                 {songs.length} / {FREE_LIMIT} free songs
-                {overLimit && (
+                {/* {overLimit && (
                   <button className={styles.upgradeLink} onClick={() => setShowUpgrade(true)}>
-                    Upgrade →
+                    Upgrade → 
                   </button>
+                )} */}
+                {overLimit && (
+                  <span className={styles.upgradeLink}>Songs beyond 10 are locked</span>
                 )}
               </span>
             )}
@@ -100,9 +103,9 @@ export default function App() {
         <div className={styles.topBar}>
           <div>
             <h1 className={styles.pageTitle}>Build your event playlist</h1>
-            <p className={styles.pageSubtitle}>Load songs, set trim points, configure fades, export as one MP3.</p>
+            <p className={styles.pageSubtitle}>Load songs, set trim points, configure fades, export as one MP3. (Max 10 songs)</p>
           </div>
-          <AuthBar isPro={isPro} />
+          {/* <AuthBar isPro={isPro} /> */}
         </div>
 
         <section className={styles.section}>
@@ -140,10 +143,10 @@ export default function App() {
             </DndContext>
             {overLimit && (
               <div className={styles.limitBanner}>
-                Songs beyond {FREE_LIMIT} are locked on the free plan.{' '}
-                <button className={styles.limitBannerBtn} onClick={() => setShowUpgrade(true)}>
+                Songs beyond {FREE_LIMIT} are locked.{' '}
+                {/* <button className={styles.limitBannerBtn} onClick={() => setShowUpgrade(true)}>
                   Unlock unlimited →
-                </button>
+                </button> */}
               </div>
             )}
           </section>

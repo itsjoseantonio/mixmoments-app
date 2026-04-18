@@ -92,7 +92,7 @@ export function SongCard({
   return (
     <div ref={setNodeRef} style={style} className={`${styles.card} ${locked ? styles.locked : ''}`}>
       {locked && (
-        <button className={styles.lockedBadge} onClick={onUpgrade}>locked — upgrade</button>
+        <button className={styles.lockedBadge} onClick={() => {}}>locked</button>
       )}
 
       <audio
@@ -103,7 +103,7 @@ export function SongCard({
       />
 
       <div className={styles.header}>
-        <button className={styles.dragHandle} {...attributes} {...listeners} title="Drag to reorder">
+        <button className={styles.dragHandle} {...attributes} {...listeners} title="Drag to reorder" disabled={locked}>
           <GripIcon />
         </button>
         <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
@@ -111,7 +111,7 @@ export function SongCard({
         {song.duration > 0 && (
           <span className={styles.duration}>{formatTime(song.duration)}</span>
         )}
-        <button className={styles.removeBtn} onClick={() => onRemove(song.id)} title="Remove">
+        <button className={styles.removeBtn} style={{ pointerEvents: locked ? 'auto' : 'auto' }} onClick={() => onRemove(song.id)} title="Remove">
           <RemoveIcon />
         </button>
       </div>
