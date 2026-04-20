@@ -2,6 +2,7 @@ import { useState, useCallback, useRef } from 'react';
 import { arrayMove } from '@dnd-kit/sortable';
 import type { DragEndEvent } from '@dnd-kit/core';
 import { formatTime } from '@/features/export/lib/audio';
+import { capture } from '@/shared/lib/analytics';
 import type { Song } from '../types';
 
 export function usePlaylist() {
@@ -30,22 +31,37 @@ export function usePlaylist() {
         const id = `${Date.now()}-${Math.random()}`;
         audioBuffers.current[id] = e.target!.result as ArrayBuffer;
 
-        setSongs(prev => [...prev, {
-          id,
-          file,
-          name: file.name.replace(/\.[^.]+$/, ''),
-          duration,
-          startTime: '0:00',
-          endTime: duration > 0 ? formatTime(duration) : '',
-          fadeOut: 3,
-        }]);
+        setSongs(prev => {
+          const updated = [...prev, {
+            id,
+            file,
+            name: file.name.replace(/\.[^.]+$/, ''),
+            duration,
+            startTime: '0:00',
+            endTime: duration > 0 ? formatTime(duration) : '',
+            fadeOut: 3,
+          }];
+          capture('file_loaded', {
+            file_name: file.name,
+            file_size_mb: +(file.size / 1024 / 1024).toFixed(2),
+            duration_s: +duration.toFixed(1),
+            total_songs: updated.length,
+          });
+          return updated;
+        });
       };
       reader.readAsArrayBuffer(file);
     }
   }, []);
 
   const updateSong = useCallback((id: string, field: string, value: string | number) => {
-    setSongs(prev => prev.map(s => s.id === id ? { ...s, [field]: value } : s));
+    setSongs(prev => {
+      const song = prev.find(s => s.id === id);
+      if (song) {
+        capture('song_configured', { field, value, song_name: song.name });
+      }
+      return prev.map(s => s.id === id ? { ...s, [field]: value } : s);
+    });
   }, []);
 
   const removeSong = useCallback((id: string) => {
