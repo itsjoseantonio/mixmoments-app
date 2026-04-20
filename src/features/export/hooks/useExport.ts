@@ -3,6 +3,7 @@ import type { MutableRefObject } from 'react';
 import { processAndEncode } from '../lib/audio';
 import { FREE_LIMIT, FREE_EXPORT_LIMIT } from '@/features/billing/constants';
 import { getExportCount, incrementExportCount } from '@/features/billing/lib/exportQuota';
+import { capture } from '@/shared/lib/analytics';
 import type { Song } from '@/features/playlist/types';
 import type { ExportStatus } from '../types';
 
@@ -31,6 +32,14 @@ export function useExport(
 
     setStatus({ type: 'loading', message: 'Decoding audio…' });
     setProgress(0);
+
+    capture('export_started', {
+      song_count: songs.length,
+      is_pro: isPro,
+      total_duration_s: songs.reduce((sum, s) => sum + s.duration, 0),
+    });
+
+    const exportStartedAt = Date.now();
 
     try {
       const decoded: AudioBuffer[] = [];
@@ -64,7 +73,19 @@ export function useExport(
 
       setProgress(100);
       setStatus({ type: 'done', message: `Done — ${(blob.size / 1024 / 1024).toFixed(1)} MB downloaded` });
+
+      capture('export_completed', {
+        song_count: songs.length,
+        is_pro: isPro,
+        file_size_mb: +(blob.size / 1024 / 1024).toFixed(2),
+        duration_ms: Date.now() - exportStartedAt,
+      });
     } catch (err) {
+      capture('export_failed', {
+        song_count: songs.length,
+        is_pro: isPro,
+        error: (err as Error).message,
+      });
       setStatus({ type: 'error', message: (err as Error).message });
     }
   };

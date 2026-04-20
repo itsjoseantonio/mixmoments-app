@@ -4,6 +4,8 @@ const envSchema = z.object({
   VITE_CLERK_PUBLISHABLE_KEY: z.string().min(1),
   VITE_SUPABASE_URL: z.string().url(),
   VITE_SUPABASE_ANON_KEY: z.string().min(1),
+  VITE_POSTHOG_KEY: z.string().optional(),
+  VITE_POSTHOG_HOST: z.string().optional(),
 });
 
 export const env = envSchema.parse(import.meta.env);
