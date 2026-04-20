@@ -95,7 +95,7 @@
 .main {
   flex: 1;
   padding: 2.5rem 2.5rem 4rem;
-  max-width: 720px;
+  max-width: 760px;
   overflow: auto;
 }
 
@@ -188,7 +188,6 @@
   font-family: var(--font-mono);
   cursor: pointer;
   padding: 0;
-  text-decoration: underline;
 }
 
 .limitBanner {
