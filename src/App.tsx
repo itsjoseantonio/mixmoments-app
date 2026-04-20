@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   DndContext, closestCenter, PointerSensor, useSensor, useSensors,
 } from '@dnd-kit/core';
@@ -12,10 +12,12 @@ import { SongCard } from '@/features/playlist/components/SongCard/SongCard';
 import { ExportPanel } from '@/features/export/components/ExportPanel/ExportPanel';
 import { UpgradeModal } from '@/features/billing/components/UpgradeModal/UpgradeModal';
 import { AuthBar } from '@/features/billing/components/AuthBar/AuthBar';
+import { SurveyModal } from '@/features/survey/components/SurveyModal/SurveyModal';
 
 import { usePlaylist } from '@/features/playlist/hooks/usePlaylist';
 import { useExport } from '@/features/export/hooks/useExport';
 import { usePlan } from '@/features/billing/hooks/usePlan';
+import { useSurvey } from '@/features/survey/hooks/useSurvey';
 
 import { formatTime, parseTime } from '@/features/export/lib/audio';
 import { FREE_LIMIT } from '@/features/billing/constants';
@@ -33,6 +35,15 @@ export default function App() {
     isPro,
     () => setShowUpgrade(true),
   );
+  const { isVisible: showSurvey, submitted: surveySubmitted, submitting: surveySubmitting, triggerAfterExport, dismiss: dismissSurvey, submit: submitSurvey } = useSurvey();
+
+  const prevStatusType = useRef(status.type);
+  useEffect(() => {
+    if (status.type === 'loading' && prevStatusType.current !== 'loading') {
+      triggerAfterExport();
+    }
+    prevStatusType.current = status.type;
+  }, [status.type, triggerAfterExport]);
 
   useEffect(() => {
     const raw = Object.fromEntries(new URLSearchParams(window.location.search));
@@ -166,6 +177,14 @@ export default function App() {
       </main>
 
       {showUpgrade && <UpgradeModal onClose={() => setShowUpgrade(false)} />}
+      {showSurvey && (
+        <SurveyModal
+          submitted={surveySubmitted}
+          submitting={surveySubmitting}
+          onSubmit={submitSurvey}
+          onClose={dismissSurvey}
+        />
+      )}
     </div>
   );
 }
