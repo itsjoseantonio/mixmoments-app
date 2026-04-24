@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useUser } from '@clerk/nextjs';
 import { capture } from '@/shared/lib/analytics';
 import { saveSurveyResponse } from '../lib/surveyApi';
 import { SURVEY_DONE_KEY } from '../constants';
@@ -10,7 +10,7 @@ export function useSurvey() {
   const [isVisible, setIsVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const triggerAfterExport = useCallback(() => {
     if (localStorage.getItem(SURVEY_DONE_KEY)) return;

@@ -12,19 +12,19 @@ interface SongCardProps {
   onChange: (id: string, field: string, value: string | number) => void;
   onRemove: (id: string) => void;
   locked: boolean;
-  onUpgrade: () => void;
   isPlaying: boolean;
   onPlay: (id: string | null) => void;
 }
 
 export function SongCard({
-  song, index, total, onChange, onRemove, locked, onUpgrade, isPlaying, onPlay,
+  song, index, total, onChange, onRemove, locked, isPlaying, onPlay,
 }: SongCardProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: song.id });
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const blobUrlRef = useRef('');
   const songRef = useRef(song);
+  // eslint-disable-next-line react-hooks/refs
   songRef.current = song;
 
   const [currentTime, setCurrentTime] = useState(0);

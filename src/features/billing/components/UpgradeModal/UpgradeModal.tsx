@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useUser, SignInButton } from '@clerk/clerk-react';
+import { useUser, SignInButton } from '@clerk/nextjs';
 import { CheckoutResponseSchema } from '../../schemas';
 import styles from './UpgradeModal.module.css';
 
