@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect, useRef } from 'react';
 import {
   DndContext, closestCenter, PointerSensor, useSensor, useSensors,
@@ -11,7 +12,6 @@ import { DropZone } from '@/features/playlist/components/DropZone/DropZone';
 import { SongCard } from '@/features/playlist/components/SongCard/SongCard';
 import { ExportPanel } from '@/features/export/components/ExportPanel/ExportPanel';
 import { UpgradeModal } from '@/features/billing/components/UpgradeModal/UpgradeModal';
-import { AuthBar } from '@/features/billing/components/AuthBar/AuthBar';
 import { SurveyModal } from '@/features/survey/components/SurveyModal/SurveyModal';
 
 import { usePlaylist } from '@/features/playlist/hooks/usePlaylist';
@@ -144,7 +144,6 @@ export default function App() {
                       onChange={updateSong}
                       onRemove={removeSong}
                       locked={!isPro && idx >= FREE_LIMIT}
-                      onUpgrade={() => setShowUpgrade(true)}
                       isPlaying={playingId === song.id}
                       onPlay={setPlayingId}
                     />

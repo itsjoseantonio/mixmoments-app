@@ -23,7 +23,7 @@ export function usePlaylist() {
         try {
           const buf = await ctx.decodeAudioData((e.target!.result as ArrayBuffer).slice(0));
           duration = buf.duration;
-        } catch {}
+        } catch { /* ignore decode errors — duration stays 0 */ }
         finally {
           ctx.close();
         }

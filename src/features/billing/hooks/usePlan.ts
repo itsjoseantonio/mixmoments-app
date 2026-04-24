@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useUser } from '@clerk/nextjs';
 import { supabase } from '@/shared/lib/supabase';
 import { PurchaseSchema } from '../schemas';
 
@@ -10,6 +10,7 @@ export function usePlan() {
 
   useEffect(() => {
     if (!isLoaded) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (!user) { setIsPro(false); setLoading(false); return; }
 
     async function check() {

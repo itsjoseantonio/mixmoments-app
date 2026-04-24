@@ -1,4 +1,4 @@
-import { SignInButton, SignedIn, SignedOut, UserButton as ClerkUserButton } from '@clerk/clerk-react';
+import { SignInButton, SignedIn, SignedOut, UserButton as ClerkUserButton } from '@clerk/nextjs';
 import styles from './AuthBar.module.css';
 
 interface AuthBarProps {
