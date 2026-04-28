@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
 export async function POST(request: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
   const { clerkUserId, userEmail } = await request.json() as { clerkUserId?: string; userEmail?: string };
   if (!clerkUserId) return NextResponse.json({ error: 'Missing user ID' }, { status: 400 });
 
