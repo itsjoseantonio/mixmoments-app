@@ -122,20 +122,6 @@
   color: var(--rose-dark);
 }
 
-.progressTrack {
-  flex: 1;
-  height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.progressFill {
-  height: 100%;
-  background: var(--rose);
-  border-radius: 2px;
-  transition: width 0.1s linear;
-}
 
 .playerTime {
   font-size: 10px;

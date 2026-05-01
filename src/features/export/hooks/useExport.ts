@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import type { MutableRefObject } from 'react';
+import { useTranslations } from 'next-intl';
 import { processAndEncode } from '../lib/audio';
 import { FREE_LIMIT, FREE_EXPORT_LIMIT } from '@/features/billing/constants';
 import { getExportCount, incrementExportCount } from '@/features/billing/lib/exportQuota';
@@ -13,6 +14,7 @@ export function useExport(
   isPro: boolean,
   onUpgradeRequired: () => void,
 ) {
+  const t = useTranslations('export');
   const [status, setStatus] = useState<ExportStatus>({ type: 'idle', message: '' });
   const [progress, setProgress] = useState(0);
   const [exportsUsed, setExportsUsed] = useState(() => getExportCount());
@@ -30,7 +32,7 @@ export function useExport(
       return;
     }
 
-    setStatus({ type: 'loading', message: 'Decoding audio…' });
+    setStatus({ type: 'loading', message: t('decodingAudio') });
     setProgress(0);
 
     capture('export_started', {
@@ -44,14 +46,14 @@ export function useExport(
     try {
       const decoded: AudioBuffer[] = [];
       for (let i = 0; i < songs.length; i++) {
-        setStatus({ type: 'loading', message: `Decoding: ${songs[i].name}` });
+        setStatus({ type: 'loading', message: t('decodingTrack', { name: songs[i].name }) });
         const ctx = new OfflineAudioContext(2, 2, 44100);
         const buf = await ctx.decodeAudioData(audioBuffers.current[songs[i].id].slice(0));
         decoded.push(buf);
         setProgress(Math.round(((i + 1) / songs.length) * 18));
       }
 
-      setStatus({ type: 'loading', message: 'Mixing tracks…' });
+      setStatus({ type: 'loading', message: t('mixing') });
 
       const blob = await processAndEncode(
         songs,
@@ -72,7 +74,7 @@ export function useExport(
       setExportsUsed(getExportCount());
 
       setProgress(100);
-      setStatus({ type: 'done', message: `Done — ${(blob.size / 1024 / 1024).toFixed(1)} MB downloaded` });
+      setStatus({ type: 'done', message: t('done', { size: (blob.size / 1024 / 1024).toFixed(1) }) });
 
       capture('export_completed', {
         song_count: songs.length,
@@ -92,11 +94,11 @@ export function useExport(
 
   const notifyPaymentReturn = useCallback((type: 'success' | 'cancelled') => {
     if (type === 'success') {
-      setStatus({ type: 'done', message: '🎉 Payment successful! Unlimited exports unlocked.' });
+      setStatus({ type: 'done', message: t('paymentSuccess') });
     } else {
       setStatus({ type: 'idle', message: '' });
     }
-  }, []);
+  }, [t]);
 
   return { status, progress, exportPlaylist, notifyPaymentReturn, exportsUsed };
 }

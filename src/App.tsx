@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   DndContext, closestCenter, PointerSensor, useSensor, useSensors,
 } from '@dnd-kit/core';
@@ -26,6 +27,7 @@ import { PaymentReturnSchema } from '@/features/billing/schemas';
 import styles from './App.module.css';
 
 export default function App() {
+  const t = useTranslations('app');
   const [showUpgrade, setShowUpgrade] = useState(false);
   const { isPro, loading: planLoading } = usePlan();
   const { songs, audioBuffers, addFiles, updateSong, removeSong, reorder, playingId, setPlayingId } = usePlaylist();
@@ -71,62 +73,58 @@ export default function App() {
           <div className={styles.logoIcon}><HeadphonesIcon /></div>
           <div>
             <div className={styles.logoTitle}>Mixmoments</div>
-            <div className={styles.logoSub}>playlist builder</div>
+            <div className={styles.logoSub}>{t('logoSub')}</div>
           </div>
         </div>
 
         <div className={styles.sideStats}>
           <div className={styles.stat}>
             <span className={styles.statVal}>{songs.length}</span>
-            <span className={styles.statLabel}>tracks</span>
+            <span className={styles.statLabel}>{t('tracks')}</span>
           </div>
           <div className={styles.statDivider} />
           <div className={styles.stat}>
             <span className={styles.statVal}>{totalDuration > 0 ? formatTime(totalDuration) : '—'}</span>
-            <span className={styles.statLabel}>duration</span>
+            <span className={styles.statLabel}>{t('duration')}</span>
           </div>
         </div>
 
         {!planLoading && (
           <div className={styles.planStatus}>
             {isPro ? (
-              <span className={styles.planPro}>✦ Lifetime unlocked</span>
+              <span className={styles.planPro}>{t('lifetimeUnlocked')}</span>
             ) : (
               <span className={styles.planFree}>
-                {songs.length} / {FREE_LIMIT} free songs
-                {/* {overLimit && (
-                  <button className={styles.upgradeLink} onClick={() => setShowUpgrade(true)}>
-                    Upgrade → 
-                  </button>
-                )} */}
+                {t('freeSongs', { count: songs.length, limit: FREE_LIMIT })}
                 {overLimit && (
-                  <span className={styles.upgradeLink}>Songs beyond 10 are locked</span>
+                  <span className={styles.upgradeLink}>{t('songsLocked', { limit: FREE_LIMIT })}</span>
                 )}
               </span>
             )}
           </div>
         )}
 
-        <div className={styles.sideNote}>Files stay in your browser.<br />Nothing is uploaded.</div>
+        <div className={styles.sideNote}>
+          {t('browserPrivacy')}<br />{t('browserPrivacyNote')}
+        </div>
       </aside>
 
       <main className={styles.main}>
         <div className={styles.topBar}>
           <div>
-            <h1 className={styles.pageTitle}>Build your event playlist</h1>
-            <p className={styles.pageSubtitle}>Load songs, set trim points, configure fades, export as one MP3. (Max 10 songs)</p>
+            <h1 className={styles.pageTitle}>{t('pageTitle')}</h1>
+            <p className={styles.pageSubtitle}>{t('pageSubtitle', { limit: FREE_LIMIT })}</p>
           </div>
-          {/* <AuthBar isPro={isPro} /> */}
         </div>
 
         <section className={styles.section}>
-          <div className={styles.stepLabel}>01 — Add songs</div>
+          <div className={styles.stepLabel}>{t('step1')}</div>
           <DropZone onFiles={addFiles} />
         </section>
 
         {songs.length > 0 && (
           <section className={styles.section}>
-            <div className={styles.stepLabel}>02 — Arrange & configure</div>
+            <div className={styles.stepLabel}>{t('step2')}</div>
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}
@@ -153,17 +151,14 @@ export default function App() {
             </DndContext>
             {overLimit && (
               <div className={styles.limitBanner}>
-                Songs beyond {FREE_LIMIT} are locked.{' '}
-                {/* <button className={styles.limitBannerBtn} onClick={() => setShowUpgrade(true)}>
-                  Unlock unlimited →
-                </button> */}
+                {t('limitBanner', { limit: FREE_LIMIT })}
               </div>
             )}
           </section>
         )}
 
         <section className={styles.section}>
-          <div className={styles.stepLabel}>03 — Export</div>
+          <div className={styles.stepLabel}>{t('step3')}</div>
           <ExportPanel
             songs={songs}
             status={status}

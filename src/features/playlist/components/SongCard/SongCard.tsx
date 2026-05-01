@@ -1,7 +1,9 @@
 import { useRef, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { formatTime, parseTime } from '@/features/export/lib/audio';
+import { WaveformTrimmer } from '../WaveformTrimmer/WaveformTrimmer';
 import type { Song } from '../../types';
 import styles from './SongCard.module.css';
 
@@ -19,6 +21,7 @@ interface SongCardProps {
 export function SongCard({
   song, index, total, onChange, onRemove, locked, isPlaying, onPlay,
 }: SongCardProps) {
+  const t = useTranslations('songCard');
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: song.id });
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -78,7 +81,6 @@ export function SongCard({
   const endSec = song.endTime ? parseTime(song.endTime) : song.duration;
   const trimDuration = Math.max(0, endSec - startSec);
   const elapsed = Math.max(0, currentTime - startSec);
-  const progress = trimDuration > 0 ? Math.min(100, (elapsed / trimDuration) * 100) : 0;
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -92,7 +94,7 @@ export function SongCard({
   return (
     <div ref={setNodeRef} style={style} className={`${styles.card} ${locked ? styles.locked : ''}`}>
       {locked && (
-        <button className={styles.lockedBadge} onClick={() => {}}>locked</button>
+        <button className={styles.lockedBadge} onClick={() => {}}>{t('locked')}</button>
       )}
 
       <audio
@@ -103,7 +105,7 @@ export function SongCard({
       />
 
       <div className={styles.header}>
-        <button className={styles.dragHandle} {...attributes} {...listeners} title="Drag to reorder" disabled={locked}>
+        <button className={styles.dragHandle} {...attributes} {...listeners} title={t('dragToReorder')} disabled={locked}>
           <GripIcon />
         </button>
         <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
@@ -111,7 +113,7 @@ export function SongCard({
         {song.duration > 0 && (
           <span className={styles.duration}>{formatTime(song.duration)}</span>
         )}
-        <button className={styles.removeBtn} style={{ pointerEvents: locked ? 'auto' : 'auto' }} onClick={() => onRemove(song.id)} title="Remove">
+        <button className={styles.removeBtn} style={{ pointerEvents: locked ? 'auto' : 'auto' }} onClick={() => onRemove(song.id)} title={t('remove')}>
           <RemoveIcon />
         </button>
       </div>
@@ -120,13 +122,19 @@ export function SongCard({
         <button
           className={`${styles.playBtn} ${isPlaying ? styles.playBtnActive : ''}`}
           onClick={togglePlay}
-          title={isPlaying ? 'Pause' : 'Play'}
+          title={isPlaying ? t('pause') : t('play')}
         >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
-        <div className={styles.progressTrack}>
-          <div className={styles.progressFill} style={{ width: `${progress}%` }} />
-        </div>
+        <WaveformTrimmer
+          file={song.file}
+          duration={song.duration}
+          startTime={song.startTime}
+          endTime={song.endTime}
+          currentTime={currentTime}
+          isPlaying={isPlaying}
+          onChange={(field, value) => onChange(song.id, field, value)}
+        />
         <span className={styles.playerTime}>
           {formatTime(elapsed)} / {formatTime(trimDuration || song.duration)}
         </span>
@@ -134,7 +142,7 @@ export function SongCard({
 
       <div className={styles.controls}>
         <div className={styles.ctrlGroup}>
-          <label className={styles.ctrlLabel}>start</label>
+          <label className={styles.ctrlLabel}>{t('start')}</label>
           <div className={styles.timeInput}>
             <input
               type="text"
@@ -149,7 +157,7 @@ export function SongCard({
         <div className={styles.divider} />
 
         <div className={styles.ctrlGroup}>
-          <label className={styles.ctrlLabel}>end</label>
+          <label className={styles.ctrlLabel}>{t('end')}</label>
           <div className={styles.timeInput}>
             <input
               type="text"
@@ -165,13 +173,13 @@ export function SongCard({
           <>
             <div className={styles.divider} />
             <div className={styles.ctrlGroup}>
-              <label className={styles.ctrlLabel}>fade out</label>
+              <label className={styles.ctrlLabel}>{t('fadeOut')}</label>
               <select
                 value={song.fadeOut}
                 onChange={e => onChange(song.id, 'fadeOut', Number(e.target.value))}
                 className={styles.select}
               >
-                <option value={0}>none</option>
+                <option value={0}>{t('none')}</option>
                 <option value={1}>1s</option>
                 <option value={2}>2s</option>
                 <option value={3}>3s</option>
@@ -187,7 +195,7 @@ export function SongCard({
         <div className={styles.connector}>
           <div className={styles.connectorLine} />
           <span className={styles.connectorLabel}>
-            {song.fadeOut > 0 ? `${song.fadeOut}s fade →` : 'cut →'}
+            {song.fadeOut > 0 ? t('fadeLabel', { seconds: song.fadeOut }) : t('cut')}
           </span>
           <div className={styles.connectorLine} />
         </div>

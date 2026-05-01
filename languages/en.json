@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "title": "Mixmoments — Event Playlist Builder | Merge MP3s Online",
+    "description": "Build custom event playlists in your browser. Load MP3 files, set trim points, configure fade-out transitions between tracks, and export everything as one merged MP3. Free, no uploads, no software needed.",
+    "keywords": "playlist builder, mp3 merger, event playlist, wedding playlist, party music mixer, audio editor online, merge mp3, fade transition, trim audio, browser mp3 tool",
+    "ogTitle": "Mixmoments — Event Playlist Builder",
+    "ogDescription": "Build custom event playlists in your browser. Trim songs, add fade-out transitions, and export as one merged MP3. Free, no uploads required."
+  },
+  "app": {
+    "logoSub": "playlist builder",
+    "tracks": "tracks",
+    "duration": "duration",
+    "lifetimeUnlocked": "✦ Lifetime unlocked",
+    "freeSongs": "{count} / {limit} free songs",
+    "songsLocked": "Songs beyond {limit} are locked",
+    "browserPrivacy": "Files stay in your browser.",
+    "browserPrivacyNote": "Nothing is uploaded.",
+    "pageTitle": "Build your event playlist",
+    "pageSubtitle": "Load songs, set trim points, configure fades, export as one MP3. (Max {limit} songs)",
+    "step1": "01 — Add songs",
+    "step2": "02 — Arrange & configure",
+    "step3": "03 — Export",
+    "limitBanner": "Songs beyond {limit} are locked."
+  },
+  "dropZone": {
+    "label": "Drop your MP3 files here",
+    "sub": "or click to browse · any event, any occasion · files stay in your browser"
+  },
+  "songCard": {
+    "start": "start",
+    "end": "end",
+    "fadeOut": "fade out",
+    "none": "none",
+    "dragToReorder": "Drag to reorder",
+    "remove": "Remove",
+    "play": "Play",
+    "pause": "Pause",
+    "locked": "locked",
+    "cut": "cut →",
+    "fadeLabel": "{seconds}s fade →"
+  },
+  "export": {
+    "decodingAudio": "Decoding audio…",
+    "decodingTrack": "Decoding: {name}",
+    "mixing": "Mixing tracks…",
+    "encoding": "Encoding MP3…",
+    "done": "Done — {size} MB downloaded",
+    "paymentSuccess": "🎉 Payment successful! Unlimited exports unlocked.",
+    "panel": {
+      "processing": "Processing…",
+      "lockedToExport": "Locked to export all {count} songs",
+      "limitReached": "You've reached your export limit",
+      "exportBtn": "Export merged MP3",
+      "tracksLocked": "{count, plural, one {song} other {songs}} locked",
+      "exportsLeft": "{count, plural, one {export} other {exports}} left",
+      "trackCount": "{count} {count, plural, one {track} other {tracks}}"
+    }
+  },
+  "survey": {
+    "badge": "Quick question",
+    "title": "What are you using Mixmoments for?",
+    "feedbackLabel": "Anything you wish the app could do?",
+    "optional": "optional",
+    "placeholder": "Your feedback shapes what we build next...",
+    "skip": "Skip",
+    "sending": "Sending…",
+    "send": "Send feedback",
+    "thankYou": "Thank you — your feedback shapes what we build next.",
+    "useCaseOptions": [
+      "Wedding or celebration",
+      "Party or DJ set",
+      "Podcast or content",
+      "Personal playlist",
+      "Workout or sports",
+      "Other"
+    ]
+  },
+  "billing": {
+    "upgrade": {
+      "badge": "Upgrade",
+      "title": "You've hit the free limit",
+      "subtitle": "Free plan supports up to 5 songs. Unlock unlimited exports for any event — parties, weddings, festivals, corporate — with a one-time payment.",
+      "freePlan": "Free",
+      "lifetimePlan": "Lifetime",
+      "recommended": "Recommended",
+      "priceOnce": "once",
+      "getAccess": "Get lifetime access — $19",
+      "redirecting": "Redirecting…",
+      "signInToUpgrade": "Sign in to upgrade",
+      "networkError": "Network error — please try again",
+      "unknownError": "Something went wrong",
+      "footer": "Secure payment via Stripe · No subscription · Cancel anytime isn't needed — it's yours forever",
+      "freeFeatures": [
+        "Up to 5 songs per export",
+        "Trim start & end per song",
+        "Fade-out transitions",
+        "No account needed"
+      ],
+      "proFeatures": [
+        "Unlimited songs per export",
+        "Trim start & end per song",
+        "Fade-out transitions",
+        "Lifetime access — pay once",
+        "All future features included"
+      ]
+    },
+    "auth": {
+      "lifetime": "lifetime",
+      "signIn": "Sign in"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { USE_CASE_OPTIONS } from '../../constants';
+import { useTranslations } from 'next-intl';
 import type { SurveyData } from '../../types';
 import styles from './SurveyModal.module.css';
 
@@ -11,6 +11,8 @@ interface SurveyModalProps {
 }
 
 export function SurveyModal({ submitted, submitting, onSubmit, onClose }: SurveyModalProps) {
+  const t = useTranslations('survey');
+  const useCaseOptions = t.raw('useCaseOptions') as string[];
   const [useCase, setUseCase] = useState('');
   const [feedback, setFeedback] = useState('');
 
@@ -27,15 +29,15 @@ export function SurveyModal({ submitted, submitting, onSubmit, onClose }: Survey
         {submitted ? (
           <div className={styles.thankYou}>
             <div className={styles.thankYouIcon}>✦</div>
-            <p className={styles.thankYouText}>Thank you — your feedback shapes what we build next.</p>
+            <p className={styles.thankYouText}>{t('thankYou')}</p>
           </div>
         ) : (
           <>
-            <div className={styles.badge}>Quick question</div>
-            <h2 className={styles.title}>What are you using<br />Mixmoments for?</h2>
+            <div className={styles.badge}>{t('badge')}</div>
+            <h2 className={styles.title}>{t('title')}</h2>
 
             <div className={styles.options}>
-              {USE_CASE_OPTIONS.map(option => (
+              {useCaseOptions.map(option => (
                 <button
                   key={option}
                   className={`${styles.option} ${useCase === option ? styles.optionSelected : ''}`}
@@ -47,25 +49,25 @@ export function SurveyModal({ submitted, submitting, onSubmit, onClose }: Survey
             </div>
 
             <label className={styles.label}>
-              Anything you wish the app could do?
-              <span className={styles.optional}>optional</span>
+              {t('feedbackLabel')}
+              <span className={styles.optional}>{t('optional')}</span>
             </label>
             <textarea
               className={styles.textarea}
-              placeholder="Your feedback shapes what we build next..."
+              placeholder={t('placeholder')}
               value={feedback}
               onChange={e => setFeedback(e.target.value)}
               rows={3}
             />
 
             <div className={styles.actions}>
-              <button className={styles.skipBtn} onClick={onClose}>Skip</button>
+              <button className={styles.skipBtn} onClick={onClose}>{t('skip')}</button>
               <button
                 className={styles.submitBtn}
                 onClick={handleSubmit}
                 disabled={!useCase || submitting}
               >
-                {submitting ? 'Sending…' : 'Send feedback'}
+                {submitting ? t('sending') : t('send')}
               </button>
             </div>
           </>

@@ -1,28 +1,17 @@
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useUser, SignInButton } from '@clerk/nextjs';
 import { CheckoutResponseSchema } from '../../schemas';
 import styles from './UpgradeModal.module.css';
-
-const FEATURES_FREE = [
-  'Up to 5 songs per export',
-  'Trim start & end per song',
-  'Fade-out transitions',
-  'No account needed',
-];
-
-const FEATURES_PRO = [
-  'Unlimited songs per export',
-  'Trim start & end per song',
-  'Fade-out transitions',
-  'Lifetime access — pay once',
-  'All future features included',
-];
 
 interface UpgradeModalProps {
   onClose: () => void;
 }
 
 export function UpgradeModal({ onClose }: UpgradeModalProps) {
+  const t = useTranslations('billing.upgrade');
+  const freeFeatures = t.raw('freeFeatures') as string[];
+  const proFeatures = t.raw('proFeatures') as string[];
   const { user, isSignedIn } = useUser();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -45,10 +34,10 @@ export function UpgradeModal({ onClose }: UpgradeModalProps) {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        setError(data.error ?? 'Something went wrong');
+        setError(data.error ?? t('unknownError'));
       }
     } catch {
-      setError('Network error — please try again');
+      setError(t('networkError'));
     } finally {
       setLoading(false);
     }
@@ -59,43 +48,40 @@ export function UpgradeModal({ onClose }: UpgradeModalProps) {
       <div className={styles.modal}>
         <button className={styles.closeBtn} onClick={onClose}>✕</button>
 
-        <div className={styles.badge}>Upgrade</div>
-        <h2 className={styles.title}>You've hit the free limit</h2>
-        <p className={styles.subtitle}>
-          Free plan supports up to 5 songs. Unlock unlimited exports for any event — parties, weddings,
-          festivals, corporate — with a one-time payment.
-        </p>
+        <div className={styles.badge}>{t('badge')}</div>
+        <h2 className={styles.title}>{t('title')}</h2>
+        <p className={styles.subtitle}>{t('subtitle')}</p>
 
         <div className={styles.plans}>
           <div className={styles.planCard}>
-            <div className={styles.planName}>Free</div>
+            <div className={styles.planName}>{t('freePlan')}</div>
             <div className={styles.planPrice}>$0</div>
             <ul className={styles.featureList}>
-              {FEATURES_FREE.map(f => (
+              {freeFeatures.map(f => (
                 <li key={f} className={styles.featureItem}><CheckIcon muted /> {f}</li>
               ))}
             </ul>
           </div>
 
           <div className={`${styles.planCard} ${styles.planCardPro}`}>
-            <div className={styles.planBadge}>Recommended</div>
-            <div className={styles.planName}>Lifetime</div>
+            <div className={styles.planBadge}>{t('recommended')}</div>
+            <div className={styles.planName}>{t('lifetimePlan')}</div>
             <div className={styles.planPrice}>
-              $19 <span className={styles.planPriceSub}>once</span>
+              $19 <span className={styles.planPriceSub}>{t('priceOnce')}</span>
             </div>
             <ul className={styles.featureList}>
-              {FEATURES_PRO.map(f => (
+              {proFeatures.map(f => (
                 <li key={f} className={styles.featureItem}><CheckIcon /> {f}</li>
               ))}
             </ul>
 
             {isSignedIn ? (
               <button className={styles.upgradeBtn} onClick={handleUpgrade} disabled={loading}>
-                {loading ? 'Redirecting…' : 'Get lifetime access — $19'}
+                {loading ? t('redirecting') : t('getAccess')}
               </button>
             ) : (
               <SignInButton mode="modal" fallbackRedirectUrl={window.location.href}>
-                <button className={styles.upgradeBtn}>Sign in to upgrade</button>
+                <button className={styles.upgradeBtn}>{t('signInToUpgrade')}</button>
               </SignInButton>
             )}
 
@@ -103,9 +89,7 @@ export function UpgradeModal({ onClose }: UpgradeModalProps) {
           </div>
         </div>
 
-        <p className={styles.footer}>
-          Secure payment via Stripe · No subscription · Cancel anytime isn't needed — it's yours forever
-        </p>
+        <p className={styles.footer}>{t('footer')}</p>
       </div>
     </div>
   );
