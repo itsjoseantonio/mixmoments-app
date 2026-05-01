@@ -32,11 +32,14 @@ export function WaveformTrimmer({
   const durationRef = useRef(0);
   const isPlayingRef = useRef(false);
 
-  startSecRef.current = parseTime(startTime);
-  endSecRef.current = endTime ? parseTime(endTime) : duration;
-  currentTimeRef.current = currentTime;
-  durationRef.current = duration;
-  isPlayingRef.current = isPlaying;
+  // Sync latest prop values into refs so stable callbacks always read current data
+  useEffect(() => {
+    startSecRef.current = parseTime(startTime);
+    endSecRef.current = endTime ? parseTime(endTime) : duration;
+    currentTimeRef.current = currentTime;
+    durationRef.current = duration;
+    isPlayingRef.current = isPlaying;
+  }, [startTime, endTime, duration, currentTime, isPlaying]);
 
   const computePeaks = useCallback((cssW: number) => {
     const data = dataRef.current;
