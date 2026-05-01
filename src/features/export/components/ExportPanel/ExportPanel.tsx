@@ -45,7 +45,7 @@ export function ExportPanel({ songs, status, progress, onExport, isPro, exportsU
         )}
         {!isPro && (
           <span className={quotaExhausted ? styles.quotaExhausted : styles.quotaRemaining}>
-            {exportsRemaining} {t('exportsLeft', { count: exportsRemaining })}
+            {exportsRemaining} - {t('exportsLeft', { count: exportsRemaining })}
           </span>
         )}
       </div>
