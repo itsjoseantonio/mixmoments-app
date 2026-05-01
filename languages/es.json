@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "title": "Mixmoments — Constructor de Playlist para Eventos | Combina MP3 Online",
+    "description": "Crea playlists personalizadas para eventos en tu navegador. Carga archivos MP3, establece puntos de corte, configura transiciones de fade y exporta todo como un solo MP3. Gratis, sin subidas, sin software.",
+    "keywords": "constructor de playlist, combinar mp3, playlist para eventos, playlist boda, mezclador de música, editor de audio online, unir mp3, transición fade, recortar audio, herramienta mp3",
+    "ogTitle": "Mixmoments — Constructor de Playlist para Eventos",
+    "ogDescription": "Crea playlists para eventos en tu navegador. Recorta canciones, añade transiciones fade y exporta como un solo MP3. Gratis, sin subidas."
+  },
+  "app": {
+    "logoSub": "constructor de playlist",
+    "tracks": "pistas",
+    "duration": "duración",
+    "lifetimeUnlocked": "✦ Acceso de por vida",
+    "freeSongs": "{count} / {limit} canciones gratis",
+    "songsLocked": "Las canciones después de {limit} están bloqueadas",
+    "browserPrivacy": "Los archivos permanecen en tu navegador.",
+    "browserPrivacyNote": "Nada se sube a la nube.",
+    "pageTitle": "Crea tu playlist para el evento",
+    "pageSubtitle": "Carga canciones, ajusta los cortes, configura los fades y exporta como un solo MP3. (Máx. {limit} canciones)",
+    "step1": "01 — Añadir canciones",
+    "step2": "02 — Organizar y configurar",
+    "step3": "03 — Exportar",
+    "limitBanner": "Las canciones después de {limit} están bloqueadas."
+  },
+  "dropZone": {
+    "label": "Arrastra tus archivos MP3 aquí",
+    "sub": "o haz clic para explorar · cualquier evento, cualquier ocasión · los archivos permanecen en tu navegador"
+  },
+  "songCard": {
+    "start": "inicio",
+    "end": "fin",
+    "fadeOut": "fade out",
+    "none": "ninguno",
+    "dragToReorder": "Arrastra para reordenar",
+    "remove": "Eliminar",
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "locked": "bloqueada",
+    "cut": "corte →",
+    "fadeLabel": "{seconds}s fade →"
+  },
+  "export": {
+    "decodingAudio": "Decodificando audio…",
+    "decodingTrack": "Decodificando: {name}",
+    "mixing": "Mezclando pistas…",
+    "encoding": "Codificando MP3…",
+    "done": "Listo — {size} MB descargados",
+    "paymentSuccess": "🎉 ¡Pago exitoso! Exportaciones ilimitadas desbloqueadas.",
+    "panel": {
+      "processing": "Procesando…",
+      "lockedToExport": "Bloqueado para exportar las {count} canciones",
+      "limitReached": "Has alcanzado tu límite de exportaciones",
+      "exportBtn": "Exportar MP3 combinado",
+      "tracksLocked": "{count, plural, one {canción bloqueada} other {canciones bloqueadas}}",
+      "exportsLeft": "{count, plural, one {exportación restante} other {exportaciones restantes}}",
+      "trackCount": "{count} {count, plural, one {pista} other {pistas}}"
+    }
+  },
+  "survey": {
+    "badge": "Pregunta rápida",
+    "title": "¿Para qué usas Mixmoments?",
+    "feedbackLabel": "¿Algo que desearías que la app pudiera hacer?",
+    "optional": "opcional",
+    "placeholder": "Tu opinión da forma a lo que construimos después...",
+    "skip": "Omitir",
+    "sending": "Enviando…",
+    "send": "Enviar opinión",
+    "thankYou": "Gracias — tu opinión da forma a lo que construimos después.",
+    "useCaseOptions": [
+      "Boda o celebración",
+      "Fiesta o set de DJ",
+      "Podcast o contenido",
+      "Playlist personal",
+      "Entrenamiento o deporte",
+      "Otro"
+    ]
+  },
+  "billing": {
+    "upgrade": {
+      "badge": "Mejorar plan",
+      "title": "Has alcanzado el límite gratuito",
+      "subtitle": "El plan gratuito admite hasta 5 canciones. Desbloquea exportaciones ilimitadas para cualquier evento — fiestas, bodas, festivales, corporativos — con un pago único.",
+      "freePlan": "Gratis",
+      "lifetimePlan": "De por vida",
+      "recommended": "Recomendado",
+      "priceOnce": "único",
+      "getAccess": "Obtener acceso de por vida — $19",
+      "redirecting": "Redirigiendo…",
+      "signInToUpgrade": "Iniciar sesión para mejorar",
+      "networkError": "Error de red — inténtalo de nuevo",
+      "unknownError": "Algo salió mal",
+      "footer": "Pago seguro con Stripe · Sin suscripción · Acceso permanente",
+      "freeFeatures": [
+        "Hasta 5 canciones por exportación",
+        "Recorte de inicio y fin por canción",
+        "Transiciones de fade out",
+        "Sin cuenta necesaria"
+      ],
+      "proFeatures": [
+        "Canciones ilimitadas por exportación",
+        "Recorte de inicio y fin por canción",
+        "Transiciones de fade out",
+        "Acceso de por vida — pago único",
+        "Todas las funciones futuras incluidas"
+      ]
+    },
+    "auth": {
+      "lifetime": "de por vida",
+      "signIn": "Iniciar sesión"
+    }
+  }
+}

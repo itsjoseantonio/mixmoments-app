@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { parseTime, formatTime } from '../../lib/audio';
 import { FREE_LIMIT, FREE_EXPORT_LIMIT } from '@/features/billing/constants';
 import type { Song } from '@/features/playlist/types';
@@ -14,6 +15,7 @@ interface ExportPanelProps {
 }
 
 export function ExportPanel({ songs, status, progress, onExport, isPro, exportsUsed }: ExportPanelProps) {
+  const t = useTranslations('export.panel');
   const totalSecs = songs.reduce((acc, s) => {
     const start = parseTime(s.startTime);
     const end = s.endTime ? parseTime(s.endTime) : s.duration;
@@ -34,16 +36,16 @@ export function ExportPanel({ songs, status, progress, onExport, isPro, exportsU
   return (
     <div className={styles.panel}>
       <div className={styles.info}>
-        <span className={styles.count}>{songs.length} {songs.length === 1 ? 'track' : 'tracks'}</span>
+        <span className={styles.count}>{t('trackCount', { count: songs.length })}</span>
         {totalSecs > 0 && <span className={styles.total}>~ {formatTime(totalSecs)}</span>}
         {overSongLimit && (
           <span className={styles.limitWarning}>
-            {lockedCount} song{lockedCount > 1 ? 's' : ''} locked
+            {t('tracksLocked', { count: lockedCount })}
           </span>
         )}
         {!isPro && (
           <span className={quotaExhausted ? styles.quotaExhausted : styles.quotaRemaining}>
-            {exportsRemaining} export{exportsRemaining !== 1 ? 's' : ''} left
+            {t('exportsLeft', { count: exportsRemaining })}
           </span>
         )}
       </div>
@@ -54,13 +56,13 @@ export function ExportPanel({ songs, status, progress, onExport, isPro, exportsU
         onClick={onExport}
       >
         {isExporting ? (
-          <span className={styles.exporting}><Spinner />{status.message || 'Processing…'}</span>
+          <span className={styles.exporting}><Spinner />{status.message || t('processing')}</span>
         ) : overSongLimit ? (
-          <><LockIcon />Locked to export all {songs.length} songs</>
+          <><LockIcon />{t('lockedToExport', { count: songs.length })}</>
         ) : quotaExhausted ? (
-          <><LockIcon />You've reached your export limit</>
+          <><LockIcon />{t('limitReached')}</>
         ) : (
-          <><DownloadIcon />Export merged MP3</>
+          <><DownloadIcon />{t('exportBtn')}</>
         )}
       </button>
 

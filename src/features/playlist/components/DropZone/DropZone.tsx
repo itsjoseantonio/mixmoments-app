@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './DropZone.module.css';
 
 interface DropZoneProps {
@@ -6,6 +7,7 @@ interface DropZoneProps {
 }
 
 export function DropZone({ onFiles }: DropZoneProps) {
+  const t = useTranslations('dropZone');
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -36,8 +38,8 @@ export function DropZone({ onFiles }: DropZoneProps) {
       <div className={styles.iconWrap}>
         <MusicIcon />
       </div>
-      <p className={styles.label}>Drop your MP3 files here</p>
-      <p className={styles.sub}>or click to browse · any event, any occasion · files stay in your browser</p>
+      <p className={styles.label}>{t('label')}</p>
+      <p className={styles.sub}>{t('sub')}</p>
     </div>
   );
 }

@@ -1,10 +1,3 @@
-export const USE_CASE_OPTIONS = [
-  'Wedding or celebration',
-  'Party or DJ set',
-  'Podcast or content',
-  'Personal playlist',
-  'Workout or sports',
-  'Other',
-] as const;
-
+// Use case options live in messages/{locale}.json (survey.useCaseOptions)
+// so they are automatically translated. This constant is kept for reference only.
 export const SURVEY_DONE_KEY = 'mm_survey_done';
