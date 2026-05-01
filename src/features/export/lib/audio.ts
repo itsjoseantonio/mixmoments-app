@@ -28,10 +28,21 @@ async function resampleTo44100(buf: AudioBuffer): Promise<AudioBuffer> {
   return offCtx.startRendering();
 }
 
-/**
- * Resamples decoded buffers, slices each to its trim window, and sends everything
- * to the worker for mixing + MP3 encoding off the main thread.
- */
+function encodeChunk(left: Float32Array, right: Float32Array): Promise<ArrayBuffer> {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(
+      new URL('../../../workers/mp3Encoder.worker.ts', import.meta.url),
+      { type: 'module' },
+    );
+    worker.onmessage = ({ data }: MessageEvent<ArrayBuffer>) => {
+      worker.terminate();
+      resolve(data);
+    };
+    worker.onerror = (e) => { worker.terminate(); reject(new Error(e.message)); };
+    worker.postMessage({ left, right }, [left.buffer, right.buffer]);
+  });
+}
+
 export async function processAndEncode(
   songs: Song[],
   decodedBuffers: AudioBuffer[],
@@ -40,9 +51,10 @@ export async function processAndEncode(
 ): Promise<Blob> {
   const resampled = await Promise.all(decodedBuffers.map(resampleTo44100));
 
+  // Build mixed stereo buffers with fade curves applied
+  let totalLen = 0;
   type Segment = { left: Float32Array; right: Float32Array; fade: number; sampleRate: number };
   const segments: Segment[] = [];
-  let totalLen = 0;
 
   for (let i = 0; i < songs.length; i++) {
     const s = songs[i];
@@ -55,36 +67,70 @@ export async function processAndEncode(
 
     const srcL = buf.getChannelData(0);
     const srcR = buf.numberOfChannels > 1 ? buf.getChannelData(1) : srcL;
-
-    // slice() copies only the trimmed window — result is transferable
     const left = srcL.slice(sf, sf + len);
-    // mono guard: left and right must be separate ArrayBuffers for transfer
     const right = srcL === srcR ? new Float32Array(left) : srcR.slice(sf, sf + len);
 
     segments.push({ left, right, fade: i < songs.length - 1 ? s.fadeOut : 0, sampleRate: buf.sampleRate });
     totalLen += len;
   }
 
-  return new Promise((resolve, reject) => {
-    const worker = new Worker(
-      new URL('../../../workers/mp3Encoder.worker.ts', import.meta.url),
-      { type: 'module' },
-    );
+  onStatus?.('Mixing tracks…');
 
-    worker.onmessage = ({ data }: MessageEvent<{ type: string; value?: number; message?: string; buffer?: ArrayBuffer }>) => {
-      if (data.type === 'progress') {
-        onProgress?.(data.value!);
-      } else if (data.type === 'status') {
-        onStatus?.(data.message!);
-      } else if (data.type === 'done') {
-        worker.terminate();
-        resolve(new Blob([data.buffer!], { type: 'audio/mp3' }));
+  const mL = new Float32Array(totalLen);
+  const mR = new Float32Array(totalLen);
+  let offset = 0;
+
+  for (const { left, right, fade, sampleRate } of segments) {
+    const len = left.length;
+    const fadeFrames = Math.floor(fade * sampleRate);
+    for (let f = 0; f < len; f++) {
+      let g = 1;
+      if (fade > 0 && f >= len - fadeFrames) {
+        g = Math.max(0, 1 - (f - (len - fadeFrames)) / fadeFrames);
       }
-    };
+      mL[offset + f] = left[f] * g;
+      mR[offset + f] = right[f] * g;
+    }
+    offset += len;
+  }
 
-    worker.onerror = (e) => { worker.terminate(); reject(new Error(e.message)); };
+  onProgress?.(25);
+  onStatus?.('Encoding MP3…');
 
-    const transferables = segments.flatMap(s => [s.left.buffer, s.right.buffer]);
-    worker.postMessage({ segments, totalLen }, transferables);
+  // Split at MP3 frame boundaries (1,152 samples/frame) and encode in parallel.
+  // MP3 frames are self-contained — CBR chunks can be concatenated byte-for-byte.
+  const FRAME = 1152;
+  const numWorkers = Math.min(navigator.hardwareConcurrency ?? 4, 8);
+  const framesPerWorker = Math.ceil(Math.ceil(totalLen / FRAME) / numWorkers);
+  const samplesPerWorker = framesPerWorker * FRAME;
+
+  let done = 0;
+
+  const chunkPromises = Array.from({ length: numWorkers }, (_, wi) => {
+    const start = wi * samplesPerWorker;
+    if (start >= totalLen) return Promise.resolve(new ArrayBuffer(0));
+    const end = Math.min(start + samplesPerWorker, totalLen);
+
+    // slice() copies — each worker gets its own transferable buffers
+    const left = mL.slice(start, end);
+    const right = mR.slice(start, end);
+
+    return encodeChunk(left, right).then((buf) => {
+      done++;
+      onProgress?.(25 + Math.round((done / numWorkers) * 70));
+      return buf;
+    });
   });
+
+  const results = await Promise.all(chunkPromises);
+
+  const totalBytes = results.reduce((a, b) => a + b.byteLength, 0);
+  const combined = new Uint8Array(totalBytes);
+  let off = 0;
+  for (const result of results) {
+    combined.set(new Uint8Array(result), off);
+    off += result.byteLength;
+  }
+
+  return new Blob([combined], { type: 'audio/mp3' });
 }
