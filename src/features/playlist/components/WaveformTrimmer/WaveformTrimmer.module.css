@@ -1,0 +1,14 @@
+.wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 56px;
+  border-radius: var(--radius);
+  cursor: default;
+  user-select: none;
+  touch-action: none;
+}

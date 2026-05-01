@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { formatTime, parseTime } from '@/features/export/lib/audio';
+import { WaveformTrimmer } from '../WaveformTrimmer/WaveformTrimmer';
 import type { Song } from '../../types';
 import styles from './SongCard.module.css';
 
@@ -78,7 +79,6 @@ export function SongCard({
   const endSec = song.endTime ? parseTime(song.endTime) : song.duration;
   const trimDuration = Math.max(0, endSec - startSec);
   const elapsed = Math.max(0, currentTime - startSec);
-  const progress = trimDuration > 0 ? Math.min(100, (elapsed / trimDuration) * 100) : 0;
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -124,9 +124,15 @@ export function SongCard({
         >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
-        <div className={styles.progressTrack}>
-          <div className={styles.progressFill} style={{ width: `${progress}%` }} />
-        </div>
+        <WaveformTrimmer
+          file={song.file}
+          duration={song.duration}
+          startTime={song.startTime}
+          endTime={song.endTime}
+          currentTime={currentTime}
+          isPlaying={isPlaying}
+          onChange={(field, value) => onChange(song.id, field, value)}
+        />
         <span className={styles.playerTime}>
           {formatTime(elapsed)} / {formatTime(trimDuration || song.duration)}
         </span>
