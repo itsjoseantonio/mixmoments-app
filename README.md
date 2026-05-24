@@ -96,7 +96,7 @@ In **Vercel → Project → Settings → Environment Variables**, add every key 
 | `VITE_CLERK_PUBLISHABLE_KEY` | Clerk dashboard → API Keys |
 | `VITE_SUPABASE_URL` | Supabase → Settings → API |
 | `VITE_SUPABASE_ANON_KEY` | Supabase → Settings → API |
-| `VITE_PUBLIC_URL` | Your Vercel deployment URL, e.g. `https://mixmoments.app` |
+| `VITE_PUBLIC_URL` | Your Vercel deployment URL, e.g. `https://mixmoments.live` |
 | `STRIPE_SECRET_KEY` | Stripe → Developers → API keys |
 | `STRIPE_PRICE_ID` | Stripe → Product catalog → your product → Price ID |
 | `STRIPE_WEBHOOK_SECRET` | Set after step 4 below |
