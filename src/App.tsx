@@ -14,11 +14,13 @@ import { SongCard } from '@/features/playlist/components/SongCard/SongCard';
 import { ExportPanel } from '@/features/export/components/ExportPanel/ExportPanel';
 import { UpgradeModal } from '@/features/billing/components/UpgradeModal/UpgradeModal';
 import { SurveyModal } from '@/features/survey/components/SurveyModal/SurveyModal';
+import { PreviewPlayer } from '@/features/preview/components/PreviewPlayer/PreviewPlayer';
 
 import { usePlaylist } from '@/features/playlist/hooks/usePlaylist';
 import { useExport } from '@/features/export/hooks/useExport';
 import { usePlan } from '@/features/billing/hooks/usePlan';
 import { useSurvey } from '@/features/survey/hooks/useSurvey';
+import { usePreviewPlayer } from '@/features/preview/hooks/usePreviewPlayer';
 
 import { formatTime, parseTime } from '@/features/export/lib/audio';
 import { FREE_LIMIT } from '@/features/billing/constants';
@@ -55,6 +57,20 @@ export default function App() {
       window.history.replaceState({}, '', window.location.pathname);
     }
   }, [notifyPaymentReturn]);
+
+  const player = usePreviewPlayer(songs, audioBuffers);
+
+  // Stop SongCard playback when the preview player starts
+  useEffect(() => {
+    if (player.state === 'playing') setPlayingId(null);
+  }, [player.state, setPlayingId]);
+
+  // Stop preview player when a SongCard starts playing
+  useEffect(() => {
+    if (playingId !== null) player.stop();
+  // player.stop is stable; including player would cause a loop
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playingId]);
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
 
@@ -109,7 +125,7 @@ export default function App() {
         </div>
       </aside>
 
-      <main className={styles.main}>
+      <main className={`${styles.main} ${songs.length > 0 ? styles.mainWithPlayer : ''}`}>
         <div className={styles.topBar}>
           <div>
             <h1 className={styles.pageTitle}>{t('pageTitle')}</h1>
@@ -179,6 +195,7 @@ export default function App() {
           onClose={dismissSurvey}
         />
       )}
+      <PreviewPlayer player={player} songs={songs} />
     </div>
   );
 }

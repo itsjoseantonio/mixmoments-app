@@ -99,6 +99,10 @@
   overflow: auto;
 }
 
+.mainWithPlayer {
+  padding-bottom: 8rem; /* extra room for the 56 px fixed player bar */
+}
+
 .topBar {
   margin-bottom: 2.5rem;
 }
