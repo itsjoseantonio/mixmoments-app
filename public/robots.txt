@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mixmoments.app/sitemap.xml
+Sitemap: https://mixmoments.live/sitemap.xml

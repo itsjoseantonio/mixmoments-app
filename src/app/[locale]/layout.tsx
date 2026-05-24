@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
-  const base = 'https://mixmoments.app';
+  const base = 'https://mixmoments.live';
 
   return {
     title: t('title'),
