@@ -1,0 +1,187 @@
+.bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--cream-dark);
+  border-top: 0.5px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  z-index: 50;
+}
+
+/* ── Controls ─────────────────────────────────── */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.btn:hover:not(:disabled) {
+  color: var(--ink);
+  background: rgba(30, 26, 23, 0.07);
+}
+
+.btn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.playBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--rose);
+  color: #fff !important;
+}
+
+.playBtn:hover:not(:disabled) {
+  background: var(--rose-dark) !important;
+}
+
+/* ── Track info ───────────────────────────────── */
+
+.trackInfo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.playingDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rose);
+  flex-shrink: 0;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+.trackLabel {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Progress bar ─────────────────────────────── */
+
+.progressArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.progressTrack {
+  flex: 1;
+  height: 20px; /* tall click target */
+  position: relative;
+  cursor: pointer;
+}
+
+.progressRail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  transform: translateY(-50%);
+  background: var(--border-strong);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.progressFill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 3px;
+  transform: translateY(-50%);
+  background: var(--rose);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--rose);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: transform 0.1s;
+}
+
+.progressTrack:hover .thumb {
+  transform: translate(-50%, -50%) scale(1.35);
+}
+
+/* ── Time display ─────────────────────────────── */
+
+.time {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Mobile ───────────────────────────────────── */
+
+.hideMobile {
+  /* visible by default */
+}
+
+@media (max-width: 640px) {
+  .bar {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .hideMobile {
+    display: none;
+  }
+
+  .progressArea {
+    display: none;
+  }
+
+  .trackInfo {
+    flex: 1;
+    max-width: none;
+  }
+}
