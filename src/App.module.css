@@ -152,6 +152,24 @@
   gap: 8px;
 }
 
+.arrangePlaceholder {
+  background: var(--cream-dark);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--ink-muted);
+}
+
+.mainEmpty {
+  padding-bottom: 2rem;
+}
+
+.mainEmpty .section {
+  margin-bottom: 1.25rem;
+}
+
 @media (max-width: 640px) {
   .layout { flex-direction: column; }
   .sidebar { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; padding: 1rem; gap: 1rem; }

@@ -20,6 +20,7 @@
     "step1": "01 — Añadir canciones",
     "step2": "02 — Organizar y configurar",
     "step3": "03 — Exportar",
+    "arrangePlaceholder": "Añade canciones arriba para reordenar, recortar y ajustar fades",
     "limitBanner": "Las canciones después de {limit} están bloqueadas."
   },
   "dropZone": {
@@ -52,7 +53,7 @@
       "limitReached": "Has alcanzado tu límite de exportaciones",
       "exportBtn": "Exportar MP3 combinado",
       "tracksLocked": "{count, plural, one {canción bloqueada} other {canciones bloqueadas}}",
-      "exportsLeft": "{count, plural, one {exportación restante} other {exportaciones restantes}}",
+      "exportsLeft": "{count} de {total} exportaciones restantes",
       "trackCount": "{count} {count, plural, one {pista} other {pistas}}"
     }
   },

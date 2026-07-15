@@ -125,7 +125,7 @@ export default function App() {
         </div>
       </aside>
 
-      <main className={`${styles.main} ${songs.length > 0 ? styles.mainWithPlayer : ''}`}>
+      <main className={`${styles.main} ${songs.length > 0 ? styles.mainWithPlayer : styles.mainEmpty}`}>
         <div className={styles.topBar}>
           <div>
             <h1 className={styles.pageTitle}>{t('pageTitle')}</h1>
@@ -138,40 +138,46 @@ export default function App() {
           <DropZone onFiles={addFiles} />
         </section>
 
-        {songs.length > 0 && (
-          <section className={styles.section}>
-            <div className={styles.stepLabel}>{t('step2')}</div>
-            <DndContext
-              sensors={sensors}
-              collisionDetection={closestCenter}
-              modifiers={[restrictToVerticalAxis]}
-              onDragEnd={reorder}
-            >
-              <SortableContext items={songs.map(s => s.id)} strategy={verticalListSortingStrategy}>
-                <div className={styles.songList}>
-                  {songs.map((song, idx) => (
-                    <SongCard
-                      key={song.id}
-                      song={song}
-                      index={idx}
-                      total={songs.length}
-                      onChange={updateSong}
-                      onRemove={removeSong}
-                      locked={!isPro && idx >= FREE_LIMIT}
-                      isPlaying={playingId === song.id}
-                      onPlay={setPlayingId}
-                    />
-                  ))}
+        <section className={styles.section}>
+          <div className={styles.stepLabel}>{t('step2')}</div>
+          {songs.length > 0 ? (
+            <>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                modifiers={[restrictToVerticalAxis]}
+                onDragEnd={reorder}
+              >
+                <SortableContext items={songs.map(s => s.id)} strategy={verticalListSortingStrategy}>
+                  <div className={styles.songList}>
+                    {songs.map((song, idx) => (
+                      <SongCard
+                        key={song.id}
+                        song={song}
+                        index={idx}
+                        total={songs.length}
+                        onChange={updateSong}
+                        onRemove={removeSong}
+                        locked={!isPro && idx >= FREE_LIMIT}
+                        isPlaying={playingId === song.id}
+                        onPlay={setPlayingId}
+                      />
+                    ))}
+                  </div>
+                </SortableContext>
+              </DndContext>
+              {overLimit && (
+                <div className={styles.limitBanner}>
+                  {t('limitBanner', { limit: FREE_LIMIT })}
                 </div>
-              </SortableContext>
-            </DndContext>
-            {overLimit && (
-              <div className={styles.limitBanner}>
-                {t('limitBanner', { limit: FREE_LIMIT })}
-              </div>
-            )}
-          </section>
-        )}
+              )}
+            </>
+          ) : (
+            <div className={styles.arrangePlaceholder}>
+              {t('arrangePlaceholder')}
+            </div>
+          )}
+        </section>
 
         <section className={styles.section}>
           <div className={styles.stepLabel}>{t('step3')}</div>

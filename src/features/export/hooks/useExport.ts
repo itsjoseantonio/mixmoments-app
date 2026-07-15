@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import type { MutableRefObject } from 'react';
 import { useTranslations } from 'next-intl';
 import { processAndEncode } from '../lib/audio';
@@ -17,7 +17,11 @@ export function useExport(
   const t = useTranslations('export');
   const [status, setStatus] = useState<ExportStatus>({ type: 'idle', message: '' });
   const [progress, setProgress] = useState(0);
-  const [exportsUsed, setExportsUsed] = useState(() => getExportCount());
+  const [exportsUsed, setExportsUsed] = useState(0);
+
+  useEffect(() => {
+    setExportsUsed(getExportCount());
+  }, []);
 
   const exportPlaylist = async () => {
     if (!songs.length) return;
