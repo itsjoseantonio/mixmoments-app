@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useSyncExternalStore } from 'react';
 import type { MutableRefObject } from 'react';
 import { useTranslations } from 'next-intl';
 import { processAndEncode } from '../lib/audio';
 import { FREE_LIMIT, FREE_EXPORT_LIMIT } from '@/features/billing/constants';
-import { getExportCount, incrementExportCount } from '@/features/billing/lib/exportQuota';
+import { getExportCount, incrementExportCount, subscribeToExportCount } from '@/features/billing/lib/exportQuota';
 import { capture } from '@/shared/lib/analytics';
 import type { Song } from '@/features/playlist/types';
 import type { ExportStatus } from '../types';
@@ -17,11 +17,7 @@ export function useExport(
   const t = useTranslations('export');
   const [status, setStatus] = useState<ExportStatus>({ type: 'idle', message: '' });
   const [progress, setProgress] = useState(0);
-  const [exportsUsed, setExportsUsed] = useState(0);
-
-  useEffect(() => {
-    setExportsUsed(getExportCount());
-  }, []);
+  const exportsUsed = useSyncExternalStore(subscribeToExportCount, getExportCount, () => 0);
 
   const exportPlaylist = async () => {
     if (!songs.length) return;
@@ -75,7 +71,6 @@ export function useExport(
       setTimeout(() => URL.revokeObjectURL(url), 10000);
 
       incrementExportCount();
-      setExportsUsed(getExportCount());
 
       setProgress(100);
       setStatus({ type: 'done', message: t('done', { size: (blob.size / 1024 / 1024).toFixed(1) }) });
