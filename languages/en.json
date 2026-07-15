@@ -20,6 +20,7 @@
     "step1": "01 — Add songs",
     "step2": "02 — Arrange & configure",
     "step3": "03 — Export",
+    "arrangePlaceholder": "Add songs above to reorder, trim, and set fades",
     "limitBanner": "Songs beyond {limit} are locked."
   },
   "dropZone": {
@@ -52,7 +53,7 @@
       "limitReached": "You've reached your export limit",
       "exportBtn": "Export merged MP3",
       "tracksLocked": "{count, plural, one {song} other {songs}} locked",
-      "exportsLeft": "{count, plural, one {export} other {exports}} left",
+      "exportsLeft": "{count} of {total} exports left",
       "trackCount": "{count} {count, plural, one {track} other {tracks}}"
     }
   },

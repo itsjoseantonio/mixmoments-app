@@ -1,4 +1,5 @@
 const QUOTA_KEY = 'mm_export_count';
+const listeners = new Set<() => void>();
 
 export function getExportCount(): number {
   if (typeof window === 'undefined') return 0;
@@ -7,4 +8,10 @@ export function getExportCount(): number {
 
 export function incrementExportCount(): void {
   localStorage.setItem(QUOTA_KEY, String(getExportCount() + 1));
+  listeners.forEach(l => l());
+}
+
+export function subscribeToExportCount(listener: () => void): () => void {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
 }
