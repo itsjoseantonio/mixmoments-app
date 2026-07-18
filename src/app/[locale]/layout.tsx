@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: t('keywords'),
     authors: [{ name: 'Mixmoments' }],
     robots: 'index, follow',
+    icons: { icon: '/favicon.svg' },
     alternates: {
       canonical: `${base}/${locale}`,
       languages: { en: `${base}/en`, es: `${base}/es`, 'x-default': `${base}/en` },

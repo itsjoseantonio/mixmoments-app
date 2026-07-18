@@ -109,5 +109,84 @@
       "lifetime": "lifetime",
       "signIn": "Sign in"
     }
+  },
+  "landing": {
+    "nav": {
+      "howItWorks": "How it works",
+      "useCases": "Use cases",
+      "pricing": "Pricing",
+      "cta": "Try it free"
+    },
+    "hero": {
+      "eyebrow": "Playlist builder",
+      "heading": "One mix, every",
+      "headingItalic": "moment",
+      "sub": "Drop in your MP3s, arrange them, trim and fade each one, and export a single clean track — built for weddings, parties, birthdays, or whatever's next. Nothing ever leaves your browser.",
+      "ctaPrimary": "Start building free",
+      "ctaSecondary": "See how it works",
+      "microcopy": "Free for up to 10 songs · No install · No sign-up to try",
+      "mockSong1": "01 — September – Earth, Wind & Fire.mp3",
+      "mockTime1": "0:42",
+      "mockSong2": "02 — I Gotta Feeling – The Black Eyed Peas.mp3",
+      "mockTime2": "1:18",
+      "mockSong3": "03 — Wake Me Up – Avicii.mp3",
+      "mockTime3": "0:55",
+      "mockSummary": "3 tracks · one export",
+      "mockExport": "Export merged MP3"
+    },
+    "useCases": {
+      "eyebrow": "Any occasion",
+      "heading": "Built for real moments, not just files",
+      "sub": "Wherever the day calls for a soundtrack, Mixmoments handles the mixing so you don't have to fight software for it.",
+      "items": [
+        { "icon": "♥", "title": "Weddings", "desc": "A ceremony track and a separate reception mix, without hiring a DJ." },
+        { "icon": "✦", "title": "Birthday parties", "desc": "Build the exact vibe for the room, start to finish, in one file." },
+        { "icon": "●", "title": "Podcasts & intros", "desc": "Splice intro, outro, and segments into one clean export." },
+        { "icon": "◆", "title": "DJ sets for non-DJs", "desc": "Trim and fade like a pro, without learning DJ software." }
+      ]
+    },
+    "differentiators": {
+      "items": [
+        { "num": "01", "title": "Nothing uploads", "desc": "Every file is processed locally in your browser. It never touches a server." },
+        { "num": "02", "title": "No software to learn", "desc": "No DAW, no timeline, no menus. Just your songs, trimmed and in order." },
+        { "num": "03", "title": "One clean file out", "desc": "A single MP3, faded and merged, ready to play anywhere." }
+      ]
+    },
+    "story": {
+      "p1": "I built the first version of this for my own wedding. We had a tight budget, so a lot of things were DIY — including the music. I needed one track for the ceremony and a different one for the reception, and ended up fighting with an audio editor at 1am the night before just to get the fades right.",
+      "p2": "It worked out, but it shouldn't take that much effort. So I built the tool I wished existed — and it turns out the same problem shows up for parties, birthdays, and pretty much any moment that needs its own soundtrack.",
+      "signature": "— a groom who was more stressed about the fades than the vows"
+    },
+    "howItWorks": {
+      "eyebrow": "How it works",
+      "heading": "Three steps, start to finish",
+      "steps": [
+        { "num": "01 — ADD SONGS", "title": "Drop your MP3s in", "desc": "Drag and drop or browse for files. Everything decodes right in your browser." },
+        { "num": "02 — ARRANGE & TRIM", "title": "Order, trim, fade", "desc": "Reorder tracks, set trim points on a waveform, add fade-outs per song." },
+        { "num": "03 — EXPORT", "title": "Download one MP3", "desc": "Everything merges, resamples, and encodes into a single downloadable file." }
+      ]
+    },
+    "pricing": {
+      "eyebrow": "Pricing",
+      "heading": "Free to try, one payment to keep",
+      "free": {
+        "tag": "Free",
+        "title": "Get started",
+        "amount": "$0",
+        "features": ["Up to 10 songs per playlist", "3 exports total", "Trim, fade, and reorder"]
+      },
+      "pro": {
+        "tag": "Pro · lifetime",
+        "title": "Everything, once",
+        "amount": "One-time payment",
+        "features": ["Unlimited songs", "Unlimited exports", "Every event, forever"]
+      }
+    },
+    "finalCta": {
+      "heading": "Your next moment deserves its own mix.",
+      "sub": "No install, no sign-up required to try, nothing ever leaves your browser.",
+      "cta": "Start building free"
+    },
+    "footer": "© 2026 Mixmoments — files stay in your browser, nothing is uploaded."
   }
 }

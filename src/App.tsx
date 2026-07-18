@@ -86,7 +86,7 @@ export default function App() {
     <div className={styles.layout}>
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
-          <div className={styles.logoIcon}><HeadphonesIcon /></div>
+          <div className={styles.logoIcon}><img src="/favicon.svg" alt="" width={22} height={22} /></div>
           <div>
             <div className={styles.logoTitle}>Mixmoments</div>
             <div className={styles.logoSub}>{t('logoSub')}</div>
@@ -203,15 +203,5 @@ export default function App() {
       )}
       <PreviewPlayer player={player} songs={songs} />
     </div>
-  );
-}
-
-function HeadphonesIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-      <path d="M3 14v-3a8 8 0 0 1 16 0v3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-      <rect x="1.5" y="13" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.2"/>
-      <rect x="16.5" y="13" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.2"/>
-    </svg>
   );
 }

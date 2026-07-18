@@ -109,5 +109,84 @@
       "lifetime": "de por vida",
       "signIn": "Iniciar sesión"
     }
+  },
+  "landing": {
+    "nav": {
+      "howItWorks": "Cómo funciona",
+      "useCases": "Casos de uso",
+      "pricing": "Precios",
+      "cta": "Pruébalo gratis"
+    },
+    "hero": {
+      "eyebrow": "Constructor de playlist",
+      "heading": "Un mix para cada",
+      "headingItalic": "momento",
+      "sub": "Añade tus MP3, ordénalos, recorta y ajusta el fade de cada uno, y exporta una sola pista limpia — ideal para bodas, fiestas, cumpleaños o lo que venga. Nada sale de tu navegador.",
+      "ctaPrimary": "Empieza gratis",
+      "ctaSecondary": "Ver cómo funciona",
+      "microcopy": "Gratis hasta 10 canciones · Sin instalación · Sin registro para probar",
+      "mockSong1": "01 — September – Earth, Wind & Fire.mp3",
+      "mockTime1": "0:42",
+      "mockSong2": "02 — I Gotta Feeling – The Black Eyed Peas.mp3",
+      "mockTime2": "1:18",
+      "mockSong3": "03 — Wake Me Up – Avicii.mp3",
+      "mockTime3": "0:55",
+      "mockSummary": "3 pistas · una exportación",
+      "mockExport": "Exportar MP3 combinado"
+    },
+    "useCases": {
+      "eyebrow": "Cualquier ocasión",
+      "heading": "Hecho para momentos reales, no solo archivos",
+      "sub": "Donde el día necesite una banda sonora, Mixmoments se encarga del mix para que no tengas que pelear con software.",
+      "items": [
+        { "icon": "♥", "title": "Bodas", "desc": "Una pista para la ceremonia y otra para la recepción, sin contratar DJ." },
+        { "icon": "✦", "title": "Fiestas de cumpleaños", "desc": "Crea el ambiente exacto para la sala, de principio a fin, en un archivo." },
+        { "icon": "●", "title": "Podcasts e intros", "desc": "Une intro, outro y segmentos en una sola exportación limpia." },
+        { "icon": "◆", "title": "Sets de DJ para no DJs", "desc": "Recorta y ajusta fades como un pro, sin aprender software de DJ." }
+      ]
+    },
+    "differentiators": {
+      "items": [
+        { "num": "01", "title": "Nada se sube", "desc": "Cada archivo se procesa localmente en tu navegador. Nunca toca un servidor." },
+        { "num": "02", "title": "Sin software que aprender", "desc": "Sin DAW, sin línea de tiempo, sin menús. Solo tus canciones, recortadas y en orden." },
+        { "num": "03", "title": "Un archivo limpio", "desc": "Un solo MP3, con fades y mezclado, listo para reproducir en cualquier lugar." }
+      ]
+    },
+    "story": {
+      "p1": "Construí la primera versión de esto para mi propia boda. Teníamos un presupuesto ajustado, así que muchas cosas fueron DIY — incluyendo la música. Necesitaba una pista para la ceremonia y otra para la recepción, y terminé peleándome con un editor de audio a la 1am la noche anterior solo para que los fades quedaran bien.",
+      "p2": "Funcionó, pero no debería costar tanto esfuerzo. Así que construí la herramienta que desearía que existiera — y resulta que el mismo problema aparece en fiestas, cumpleaños, y prácticamente cualquier momento que necesite su propia banda sonora.",
+      "signature": "— un novio que estaba más estresado por los fades que por los votos"
+    },
+    "howItWorks": {
+      "eyebrow": "Cómo funciona",
+      "heading": "Tres pasos, de principio a fin",
+      "steps": [
+        { "num": "01 — AÑADIR CANCIONES", "title": "Arrastra tus MP3", "desc": "Arrastra y suelta o navega para buscar archivos. Todo se decodifica en tu navegador." },
+        { "num": "02 — ORDENAR Y RECORTAR", "title": "Ordena, recorta, fade", "desc": "Reordena pistas, establece puntos de corte en la forma de onda, añade fades por canción." },
+        { "num": "03 — EXPORTAR", "title": "Descarga un MP3", "desc": "Todo se mezcla, remuestrea y codifica en un solo archivo descargable." }
+      ]
+    },
+    "pricing": {
+      "eyebrow": "Precios",
+      "heading": "Gratis para probar, un pago para quedártelo",
+      "free": {
+        "tag": "Gratis",
+        "title": "Empieza",
+        "amount": "$0",
+        "features": ["Hasta 10 canciones por playlist", "3 exportaciones en total", "Recortar, fade y reordenar"]
+      },
+      "pro": {
+        "tag": "Pro · de por vida",
+        "title": "Todo, una vez",
+        "amount": "Pago único",
+        "features": ["Canciones ilimitadas", "Exportaciones ilimitadas", "Cada evento, para siempre"]
+      }
+    },
+    "finalCta": {
+      "heading": "Tu próximo momento merece su propio mix.",
+      "sub": "Sin instalación, sin registro para probar, nada sale de tu navegador.",
+      "cta": "Empieza gratis"
+    },
+    "footer": "© 2026 Mixmoments — los archivos permanecen en tu navegador, nada se sube."
   }
 }
