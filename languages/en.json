@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "Mixmoments — Event Playlist Builder | Merge MP3s Online",
-    "description": "Build custom event playlists in your browser. Load MP3 files, set trim points, configure fade-out transitions between tracks, and export everything as one merged MP3. Free, no uploads, no software needed.",
+    "title": "Mixmoments — Mix Your Songs Into One Track for Any Event",
+    "description": "Turn your MP3s into one seamless mix for any event — trim, reorder, and fade tracks right in your browser. Nothing uploads. Free for up to 10 songs.",
     "keywords": "playlist builder,mp3 merger,event playlist,wedding playlist,party music mixer,audio editor online,merge mp3,fade transition,trim audio,browser mp3 tool",
-    "ogTitle": "Mixmoments — Event Playlist Builder",
-    "ogDescription": "Build custom event playlists in your browser. Trim songs, add fade-out transitions, and export as one merged MP3. Free, no uploads required."
+    "ogTitle": "Mixmoments — One Mix, Every Moment",
+    "ogDescription": "Trim, reorder, and fade your own songs into one clean MP3 — right in your browser, nothing uploads."
   },
   "app": {
     "logoSub": "playlist builder",

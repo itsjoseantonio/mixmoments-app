@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "Mixmoments — Constructor de Playlist para Eventos | Combina MP3 Online",
-    "description": "Crea playlists personalizadas para eventos en tu navegador. Carga archivos MP3, establece puntos de corte, configura transiciones de fade y exporta todo como un solo MP3. Gratis, sin subidas, sin software.",
+    "title": "Mixmoments — Combina Tus Canciones en Una Sola Pista para Cualquier Evento",
+    "description": "Convierte tus MP3 en un mix perfecto para cualquier evento — recorta, reordena y añade fades directamente en tu navegador. Nada se sube. Gratis hasta 10 canciones.",
     "keywords": "constructor de playlist, combinar mp3, playlist para eventos, playlist boda, mezclador de música, unir mp3, transición fade",
-    "ogTitle": "Mixmoments — Constructor de Playlist para Eventos",
-    "ogDescription": "Crea playlists para eventos en tu navegador. Recorta canciones, añade transiciones fade y exporta como un solo MP3. Gratis, sin subidas."
+    "ogTitle": "Mixmoments — Un Mix para Cada Momento",
+    "ogDescription": "Recorta, reordena y añade fades a tus canciones en un solo MP3 limpio — en tu navegador, nada se sube."
   },
   "app": {
     "logoSub": "constructor de playlist",
