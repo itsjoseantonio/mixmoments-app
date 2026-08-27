@@ -153,9 +153,9 @@
       ]
     },
     "story": {
-      "p1": "Construí la primera versión de esto para mi propia boda. Teníamos un presupuesto ajustado, así que muchas cosas fueron DIY — incluyendo la música. Necesitaba una pista para la ceremonia y otra para la recepción, y terminé peleándome con un editor de audio a la 1am la noche anterior solo para que los fades quedaran bien.",
-      "p2": "Funcionó, pero no debería costar tanto esfuerzo. Así que construí la herramienta que desearía que existiera — y resulta que el mismo problema aparece en fiestas, cumpleaños, y prácticamente cualquier momento que necesite su propia banda sonora.",
-      "signature": "— un novio que estaba más estresado por los fades que por los votos"
+      "p1": "Construí esto después de organizar la música de mi propia boda con un presupuesto ajustado: una pista continua para la ceremonia, otra distinta para la recepción, unidas y con fades entre canciones de álbumes diferentes usando un software gratuito tosco que no estaba pensado para esto. En el camino también me topé con algo pequeño pero molesto: Spotify y apps parecidas no te dejan recortar una canción, aunque para un mix casi nunca necesitas la pista completa.",
+      "p2": "Funcionó, pero no debería costar tanto esfuerzo. Así que construí la herramienta que desearía que existiera — y resulta que el mismo problema aparece en fiestas de cumpleaños, la hora loca, y prácticamente cualquier evento que necesite su propia banda sonora.",
+      "signature": "el novio"
     },
     "howItWorks": {
       "eyebrow": "Cómo funciona",
