@@ -153,9 +153,9 @@
       ]
     },
     "story": {
-      "p1": "I built the first version of this for my own wedding. We had a tight budget, so a lot of things were DIY — including the music. I needed one track for the ceremony and a different one for the reception, and ended up fighting with an audio editor at 1am the night before just to get the fades right.",
-      "p2": "It worked out, but it shouldn't take that much effort. So I built the tool I wished existed — and it turns out the same problem shows up for parties, birthdays, and pretty much any moment that needs its own soundtrack.",
-      "signature": "— a groom who was more stressed about the fades than the vows"
+      "p1": "I built this after DIY-ing my own wedding music on a tight budget — one seamless track for the ceremony, a different one for the reception, stitched together and faded from songs off different albums using clunky free software that wasn't built for this. Along the way I also ran into something small but annoying: Spotify and apps like it won't let you trim a song, even though for a mix you rarely need the whole track.",
+      "p2": "It worked out, but it shouldn't take that much effort. So I built the tool I wished existed — and it turns out the same problem shows up for birthday parties, hora loca, and pretty much any event that needs its own soundtrack.",
+      "signature": "the groom"
     },
     "howItWorks": {
       "eyebrow": "How it works",
