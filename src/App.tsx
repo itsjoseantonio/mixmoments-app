@@ -15,6 +15,7 @@ import { ExportPanel } from '@/features/export/components/ExportPanel/ExportPane
 import { UpgradeModal } from '@/features/billing/components/UpgradeModal/UpgradeModal';
 import { SurveyModal } from '@/features/survey/components/SurveyModal/SurveyModal';
 import { PreviewPlayer } from '@/features/preview/components/PreviewPlayer/PreviewPlayer';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 
 import { usePlaylist } from '@/features/playlist/hooks/usePlaylist';
 import { useExport } from '@/features/export/hooks/useExport';
@@ -123,6 +124,8 @@ export default function App() {
         <div className={styles.sideNote}>
           {t('browserPrivacy')}<br />{t('browserPrivacyNote')}
         </div>
+
+        <LanguageSwitcher className={styles.langSwitcher} />
       </aside>
 
       <main className={`${styles.main} ${songs.length > 0 ? styles.mainWithPlayer : styles.mainEmpty}`}>

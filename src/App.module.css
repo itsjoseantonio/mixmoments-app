@@ -92,6 +92,10 @@
   margin-top: auto;
 }
 
+.langSwitcher {
+  margin-top: 12px;
+}
+
 .main {
   flex: 1;
   padding: 1.5rem 2.5rem 4rem;
