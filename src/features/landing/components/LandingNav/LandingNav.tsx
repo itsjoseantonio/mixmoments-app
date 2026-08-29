@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 import styles from './LandingNav.module.css';
 
 export function LandingNav() {
@@ -17,6 +18,7 @@ export function LandingNav() {
           <a href="#uses">{t('useCases')}</a>
           {/* <a href="#pricing">{t('pricing')}</a> */}
         </div>
+        <LanguageSwitcher className={styles.langSwitcher} />
         <Link href="/app" className={styles.cta}>{t('cta')}</Link>
       </nav>
     </header>
